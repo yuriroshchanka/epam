@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30.03.2015 11:14:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Sotrudniki" table="sotrudniki" catalog="epamdb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="familiya" type="string">
+            <column name="familiya" length="45" not-null="true" />
+        </property>
+        <property name="imia" type="string">
+            <column name="imia" length="45" not-null="true" />
+        </property>
+        <property name="otchestvo" type="string">
+            <column name="otchestvo" length="45" />
+        </property>
+        <property name="zarplata" type="java.lang.Integer">
+            <column name="zarplata" />
+        </property>
+        <set name="otdelies" table="otdely" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sotrudnika" not-null="true" />
+            </key>
+            <one-to-many class="model.Otdely" />
+        </set>
+    </class>
+</hibernate-mapping>
